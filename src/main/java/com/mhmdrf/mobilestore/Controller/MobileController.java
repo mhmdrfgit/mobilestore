@@ -16,17 +16,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mhmdrf.mobilestore.Dao.MobileStore;
 import com.mhmdrf.mobilestore.Entity.Mobile;
+import com.mhmdrf.mobilestore.Entity.User;
 import com.mhmdrf.mobilestore.Service.MobileService;
+import com.mhmdrf.mobilestore.Service.UserService;
 
 @Controller
 @RequestMapping(path = "/mobilestore")
 public class MobileController {
-	
-	@Autowired
-	MobileStore mobileStore;
-	
+		
 	@Autowired
 	MobileService mobileService;
+	
 	
 	
 	@CrossOrigin
@@ -38,7 +38,7 @@ public class MobileController {
 	@CrossOrigin
 	@GetMapping(path= "/getmobiles")
 	public @ResponseBody Iterable<Mobile> GetAllMobiles() {
-		return mobileStore.findAll();
+		return mobileService.getAllMobiles();
 	}	
 	
 	@GetMapping(path= "/searchmobile/{keyword},{catagory}")
@@ -49,8 +49,8 @@ public class MobileController {
 	
 	@DeleteMapping(path="/deleteMobile/{id}")
 	public @ResponseBody String DeleteMobile(@PathVariable ("id") int id){
-		mobileStore.deleteById(id);
+		mobileService.deleteMobile(id);
 		return "Phone Deleted";
 	}
-
+	
 }

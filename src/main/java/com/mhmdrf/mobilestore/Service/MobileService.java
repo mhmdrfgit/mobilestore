@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.mhmdrf.mobilestore.Constants.Constants;
 import com.mhmdrf.mobilestore.Dao.MobileStore;
 import com.mhmdrf.mobilestore.Entity.Mobile;
+import com.mhmdrf.mobilestore.Entity.User;
 
 @Service
 public class MobileService {
@@ -29,7 +30,7 @@ public class MobileService {
 			quantity = tempMobile.get().getQuantity();
 			id = tempMobile.get().getId();
 			mobile.setQuantity(mobile.getQuantity()+quantity);
-			ms.updateQuantity(id, quantity);
+			//ms.updateQuantity(id, quantity);
 			return "Phone already exist. Increased the Quantity with"+quantity;
 		}else{
 			ms.save(mobile);
@@ -54,6 +55,16 @@ public class MobileService {
 		else
 			return null;
 	}
+
+	public Iterable<Mobile> getAllMobiles() {
+		return ms.findAll();
+	}
+
+	public void deleteMobile(int id) {
+		ms.deleteById(id);
+		
+	}
+
 	
 
 

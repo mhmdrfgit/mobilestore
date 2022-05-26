@@ -2,6 +2,7 @@ package com.mhmdrf.mobilestore.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,12 +22,18 @@ public class UserController {
 	@Autowired
 	UserUtilities userUtil;
 	
+	@CrossOrigin
 	@PostMapping(path="/registerUser")
 	public @ResponseBody String RegisterUser(@RequestBody User user) {
-		if(userUtil.emailAuthentication(user.getEmailId())) {
+		if(userUtil.EmailValidation(user.getEmailId()) && userUtil.UserNameValidation(user.getUserName())) {
 			return userService.registerUser(user);
 		}else
-			return "Invalid EmailId";
+			return "Invalid Email Id or User Name";
 		
+	}
+	
+	@PostMapping(path="/loginUser")
+	public @ResponseBody String LoginUser(@RequestBody User user) {
+		return null;
 	}
 }

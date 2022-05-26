@@ -25,6 +25,7 @@ public class UserService {
 				response = "User already exist with the user name :"+tempUsername;
 			}
 		}else {
+			user.setUserType("customer");
 			userRepo.save(user);
 			response = "User Added";
 		}

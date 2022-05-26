@@ -16,9 +16,11 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_userId_seq")
 	private int userId;
 	private String emailId;
+	private String name;
 	private String userName;
 	private String password;
 	private String userType;
+	private String phoneNumber;
 	public String getEmailId() {
 		return emailId;
 	}
@@ -43,18 +45,28 @@ public class User {
 	public void setUserType(String userType) {
 		this.userType = userType;
 	}
-	
 	public int getUserId() {
 		return userId;
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 	
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", emailId=" + emailId + ", userName=" + userName + ", password=" + password
-				+ ", userType=" + userType + "]";
-	}
-		
+		return "User [userId=" + userId + ", emailId=" + emailId + ", name=" + name + ", userName=" + userName
+				+ ", password=" + password + ", userType=" + userType + ", phoneNumber=" + phoneNumber + "]";
+	}		
 }
